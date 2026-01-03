@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var wrongCharacter: [String] = []
     
     func getRandomWord() {
+        wrongCharacter = []
         let randomNumber = Int.random(in: 0..<15)
         guessWord = randomWords[randomNumber]
         userGuess = String(repeating: "_ ", count: guessWord.count)
@@ -28,17 +29,28 @@ struct ContentView: View {
     }
     
     func onTap(letter: String) {
-        print(guessWord)
-        print("Here is the letter")
-        print(letter)
-        if guessWord.contains(letter.lowercased()){
-            print("True")
+        let lowerLetter = letter.lowercased()
+        let wordArray = Array(guessWord)
+        var guessArray = userGuess.split(separator: " ").map(String.init)
+
+        var isCorrect = false
+
+        for (index, char) in wordArray.enumerated() {
+            if String(char) == lowerLetter {
+                guessArray[index] = letter
+                isCorrect = true
+            }
         }
-        else {
-            wrongCharacter.append(letter)
+
+        if isCorrect {
+            userGuess = guessArray.joined(separator: " ")
+        } else {
+            if !wrongCharacter.contains(letter) {
+                wrongCharacter.append(letter)
+            }
         }
-        print(wrongCharacter)
     }
+
 
     
     var body: some View {
@@ -57,7 +69,8 @@ struct ContentView: View {
                               Text(letter)
                                  .font(.title)
                                  .frame(width: 50, height: 50)
-                                 .background(wrongCharacter.contains(letter) ? Color.red.opacity(0.2) : Color.blue.opacity(0.2))
+                                 .background(
+                                    wrongCharacter.contains(letter) ? Color.red.opacity(0.2) : userGuess.contains(letter) ? Color.green.opacity(0.2) : Color.blue.opacity(0.2))
                                  .cornerRadius(8)
                                  .onTapGesture {
                                      if !wrongCharacter.contains(letter) {
