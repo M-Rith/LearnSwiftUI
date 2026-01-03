@@ -18,6 +18,8 @@ struct ContentView: View {
     @State var userGuess = ""
     @State var guessWord = ""
     
+    @State var life = 5;
+    
     @State private var wrongCharacter: [String] = []
     
     func getRandomWord() {
@@ -56,37 +58,57 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack (alignment: .center) {
-                Text(userGuess)
+                if (guessWord == "") {
+                    Text("You have 5 hearts")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Text("Each wrong guess will lose 1 heart")
+                        .font(.headline)
+                    Text("You lose when heart each 0")
+                        .font(.headline)
                 
-                Button(action: {
-                    getRandomWord()
-                }, label: {
-                    Text("Started")
-                })
-                if (guessWord != "") {
-                    LazyVGrid(columns: columns, spacing: 12) {
-                          ForEach(characters, id: \.self) { letter in
-                              Text(letter)
-                                 .font(.title)
-                                 .frame(width: 50, height: 50)
-                                 .background(
-                                    wrongCharacter.contains(letter) ? Color.red.opacity(0.2) : userGuess.contains(letter) ? Color.green.opacity(0.2) : Color.blue.opacity(0.2))
-                                 .cornerRadius(8)
-                                 .onTapGesture {
-                                     if !wrongCharacter.contains(letter) {
-                                         onTap(letter: letter)
-                                     }
-                                     
-                                 }
-                          }
-                      }
+                    Button(action: {
+                        getRandomWord()
+                    }, label: {
+                        Text("Started")
+                    })
+                    .padding(.top, 100)
+                    .padding(.bottom, 100)
                 }
-                
-                
+                else {
+                    VStack {
+                        HStack {
+                            Text("\(life) Remaining")
+                        }
+                        
+                        Text(userGuess)
+                            .font(.title)
+                            .fontWeight(.bold)
+                        LazyVGrid(columns: columns, spacing: 12) {
+                              ForEach(characters, id: \.self) { letter in
+                                  Text(letter)
+                                     .font(.title)
+                                     .frame(width: 50, height: 50)
+                                     .background(
+                                        wrongCharacter.contains(letter) ? Color.red.opacity(0.2) : userGuess.contains(letter) ? Color.green.opacity(0.2) : Color.blue.opacity(0.2))
+                                     .cornerRadius(8)
+                                     .onTapGesture {
+                                         if !wrongCharacter.contains(letter) || !userGuess.contains(letter) {
+                                             onTap(letter: letter)
+                                         }
+                                         
+                                     }
+                              }
+                          }
+                        
+                    }
+                    
+                }
                 Text(guessWord)
                 
             }.padding()
-            .navigationTitle("Guess the word Game")
+                .navigationTitle("Guess the word")
+            
         }
     }
 }
