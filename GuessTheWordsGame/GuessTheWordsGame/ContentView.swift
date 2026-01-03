@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var randomWords = ["apple", "river", "cloud", "mirror", "lantern", "forest", "whisper", "stone", "planet", "shadow", "feather", "window", "coffee", "breeze", "mountain"]
+    
+    var character = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M","N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    
+    var userGuess = ""
+
+
+    
     var body: some View {
-        VStack {
-            Text("Guess the words game")
-            
-            
+        NavigationStack {
+            VStack {
+                Text("Hello wrold")
+                Text("Hell owrold")
+                
+            }
+            .navigationTitle("Guess the word Game")
         }
-        .padding()
     }
 }
 
