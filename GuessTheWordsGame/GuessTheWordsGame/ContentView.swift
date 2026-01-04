@@ -19,7 +19,6 @@ struct ContentView: View {
     @State var guessWord = ""
     
     @State var life = 5;
-    
     @State private var wrongCharacter: [String] = []
     
     func getRandomWord() {
@@ -66,7 +65,7 @@ struct ContentView: View {
             VStack (alignment: .center) {
                 if (life > 0) {
                     if (guessWord == "") {
-                        Text("You have 5 hearts")
+                        Text("You have \(life) hearts")
                             .font(.title)
                             .fontWeight(.bold)
                         Text("Each wrong guess will lose 1 heart")
@@ -83,8 +82,28 @@ struct ContentView: View {
                         .padding(.bottom, 100)
                     }
                     else {
-                        if (guessWord.lowercased() == userGuess.lowercased()) {
-                            Text("You win")
+                        if (guessWord.lowercased() == userGuess
+                            .replacingOccurrences(of: " ", with: "")
+                            .lowercased()) {
+                            VStack {
+                                Text("You win")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                
+                                Text("You have \(life) remaining")
+                                    .font(.title3)
+                                    .fontWeight(.medium)
+                                
+                                Button(action: {
+                                    tryAgain()
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: "arrow.clockwise")
+                                        Text("Play Again ?")
+                                    }
+                                }).padding(.top, 100)
+                            }
+                            
                         }
                         else {
                             VStack {
