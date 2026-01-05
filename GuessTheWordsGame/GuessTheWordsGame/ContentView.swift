@@ -157,9 +157,6 @@ struct ContentView: View {
                     .padding(.top, 100)
                     
                 }
-                
-
-                
             }.padding()
                 .navigationTitle("Guess the word")
             
