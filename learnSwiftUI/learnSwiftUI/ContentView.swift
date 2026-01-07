@@ -9,14 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HStack (alignment : .bottom ,spacing: 0) {
-            Image("apple")
-                .border(.red)
-            Text("apple")
-                .border(.black, width: 1)
-        }
-        .frame(width: 300, height: 300, alignment: .topLeading)
-        .border(.black)
+//        HStack (alignment : .bottom ,spacing: 0) {
+//            Image("apple")
+//                .border(.red)
+//            Text("apple")
+//                .border(.black, width: 1)
+//        }
+//        .frame(width: 300, height: 300, alignment: .topLeading)
+//        .border(.black)
+        
+        GeometryReader(content: {
+            geomery in
+            VStack {
+                Text("Hello world")
+            }
+        })
        
     }
 }
