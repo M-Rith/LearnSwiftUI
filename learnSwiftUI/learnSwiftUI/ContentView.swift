@@ -18,12 +18,17 @@ struct ContentView: View {
 //        .frame(width: 300, height: 300, alignment: .topLeading)
 //        .border(.black)
         
-        GeometryReader(content: {
-            geomery in
-            VStack {
-                Text("Hello world")
-            }
-        })
+//        GeometryReader(content: {
+//            geomery in
+//            VStack {
+//                Text("Hello world")
+//            }
+//        })
+        Text("Testing dwadawdawdawdawdawfawdwfawgafawdaw")
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundStyle(.red)
+            .multilineTextAlignment(.center)
        
     }
 }
