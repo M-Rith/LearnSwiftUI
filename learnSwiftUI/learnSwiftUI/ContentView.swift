@@ -24,11 +24,20 @@ struct ContentView: View {
 //                Text("Hello world")
 //            }
 //        })
-        Text("Testing dwadawdawdawdawdawfawdwfawgafawdaw")
-            .font(.title)
-            .fontWeight(.bold)
-            .foregroundStyle(.red)
-            .multilineTextAlignment(.center)
+//        Text("Testing dwadawdawdawdawdawfawdwfawgafawdaw")
+//            .font(.title)
+//            .fontWeight(.bold)
+//            .foregroundStyle(.red)
+//            .multilineTextAlignment(.center)
+        
+//        Image(systemName: "person.circle")
+//            .font(.largeTitle)
+        
+        Image("blackTree", bundle: nil)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width :100, height: 100)
+            
        
     }
 }
