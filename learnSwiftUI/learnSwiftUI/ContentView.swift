@@ -33,10 +33,18 @@ struct ContentView: View {
 //        Image(systemName: "person.circle")
 //            .font(.largeTitle)
         
+        Image("tree")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(maxWidth: .infinity, maxHeight: .infinity )
+        
         Image("blackTree", bundle: nil)
             .resizable()
             .aspectRatio(contentMode: .fit)
+            .foregroundStyle(.red)
             .frame(width :100, height: 100)
+            .border(.black)
+        
             
        
     }
