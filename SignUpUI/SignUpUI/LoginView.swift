@@ -39,10 +39,10 @@ struct LoginView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.background.ignoresSafeArea()
-            
-            ScrollView(showsIndicators: false) {
+        NavigationStack {
+            ZStack {
+                Color.background.ignoresSafeArea()
+                
                 VStack (alignment: .leading) {
                     
                     VStack (alignment: .leading) {
@@ -55,7 +55,9 @@ struct LoginView: View {
                             .foregroundStyle(.grey)
                             .font(.caption)
                         
-                    }.padding(.bottom, 75)
+                    }
+                    .padding(.bottom, 75)
+                    .padding(.top, 25)
                     
                     
                     // Email
@@ -199,9 +201,6 @@ struct LoginView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 5))
                     }
                     
-                    
-                    
-                    
                     Spacer()
                     
                     HStack {
@@ -209,28 +208,35 @@ struct LoginView: View {
                         Text("Dont have account ?")
                             .font(.subheadline)
                             .foregroundStyle(.white)
-                        Button(action: {
-                            print("Hello world")
-                        }, label : {
+
+                        NavigationLink {
+                            SignUpView()
+                            
+                        } label: {
                             Text("Sign Up")
-                                .font(.subheadline)
-                                .foregroundStyle(.main)
-                                .fontWeight(.bold)
-                        })
+                            .font(.subheadline)
+                            .foregroundStyle(.main)
+                            .fontWeight(.bold)
+                        }
+    
+                        
                         Spacer()
                     }
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 24)
             }
+            .alert("Failed", isPresented: $showLoginError) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Invalid email or password")
+            }
+            .navigationBarBackButtonHidden(true)
+            .interactiveDismissDisabled(true)
         }
-        .alert("Failed", isPresented: $showLoginError) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text("Invalid email or password")
-        }
-        .scrollDisabled(!keyboard.isVisible)
     }
+
+        
 }
 
 #Preview {
