@@ -46,13 +46,14 @@ struct ContentView: View {
 //            .border(.black)
         
         VStack (spacing: 10) {
-            Rectangle()
-                .frame(width: 250, height: 50)
-                .foregroundStyle(.red)
-                .border(.black, width: 10)
-            
-            RoundedRectangle(cornerRadius : 10)
-                .frame(width: 250, height: 50)
+            Color.primaryTheme
+//            Rectangle()
+//                .frame(width: 250, height: 50)
+//                .foregroundStyle(.red)
+//                .border(.black, width: 10)
+//            
+//            RoundedRectangle(cornerRadius : 10)
+//                .frame(width: 250, height: 50)
         }
       
         
