@@ -33,17 +33,28 @@ struct ContentView: View {
 //        Image(systemName: "person.circle")
 //            .font(.largeTitle)
         
-        Image("tree")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: .infinity, maxHeight: .infinity )
+//        Image("tree")
+//            .resizable()
+//            .aspectRatio(contentMode: .fit)
+//            .frame(maxWidth: .infinity, maxHeight: .infinity )
+//        
+//        Image("blackTree", bundle: nil)
+//            .resizable()
+//            .aspectRatio(contentMode: .fit)
+//            .foregroundStyle(.red)
+//            .frame(width :100, height: 100)
+//            .border(.black)
         
-        Image("blackTree", bundle: nil)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .foregroundStyle(.red)
-            .frame(width :100, height: 100)
-            .border(.black)
+        VStack (spacing: 10) {
+            Rectangle()
+                .frame(width: 250, height: 50)
+                .foregroundStyle(.red)
+                .border(.black, width: 10)
+            
+            RoundedRectangle(cornerRadius : 10)
+                .frame(width: 250, height: 50)
+        }
+      
         
             
        
