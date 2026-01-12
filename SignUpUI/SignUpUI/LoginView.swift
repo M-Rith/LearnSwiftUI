@@ -45,7 +45,7 @@ struct LoginView: View {
                 
                 VStack (alignment: .leading) {
                     
-                    VStack (alignment: .leading) {
+                    VStack (alignment: .leading, spacing: 0) {
                         Text("Hi, Welcome Back! 👋")
                             .foregroundStyle(.main)
                             .fontWeight(.bold)
@@ -231,8 +231,6 @@ struct LoginView: View {
             } message: {
                 Text("Invalid email or password")
             }
-            .navigationBarBackButtonHidden(true)
-            .interactiveDismissDisabled(true)
         }
     }
 
