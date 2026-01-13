@@ -141,12 +141,15 @@ struct LoginView: View {
                     }
                     
                     
-                    Button(action: {}, label: {
+                    NavigationLink {
+                        ForgetPasswordView()
+                        
+                    } label: {
                         Text("Forget Password")
-                            .foregroundStyle(.main)
-                            .fontWeight(.bold)
-                            .font(.subheadline)
-                    })
+                        .font(.subheadline)
+                        .foregroundStyle(.main)
+                        .fontWeight(.bold)
+                    }
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.bottom, 30)
                     
