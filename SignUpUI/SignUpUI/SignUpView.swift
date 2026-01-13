@@ -139,6 +139,44 @@ struct SignUpView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     })
                     
+                    HStack(alignment: .center , spacing: 12) {
+                        Divider()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 1)
+                            .background(.white)
+                        
+                        Text("Or login with")
+                            .font(.caption)
+                            .foregroundStyle(.white)
+                            .fontWeight(.semibold)
+                        
+                        Divider()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 1)
+                            .background(.white)
+                    }
+                    
+                    .padding(.vertical, 16)
+                    
+                    Button(action: {
+                        print("Login")
+                    }) {
+                        HStack(spacing: 12) {
+                            Image("Google")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                            Text("Continue with Google")
+                                .foregroundStyle(.black)
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 45)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                    }
+                    
+                    
                     Spacer()
                     
                     
