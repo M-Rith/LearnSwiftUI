@@ -234,7 +234,7 @@ struct LoginView: View {
             } message: {
                 Text("Invalid email or password")
             }
-        }
+        }.tint(.white)
     }
 
         
