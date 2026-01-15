@@ -72,9 +72,6 @@ struct ForgetPasswordView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 5))
                 })
                 
-                
-                
-                
                 Spacer()
         }
             .padding(.horizontal, 24)
