@@ -60,8 +60,10 @@ struct BalanceView: View {
                 Spacer()
             }.padding()
         }
-        .frame(width: .infinity, height: 100)
+        .frame(maxWidth: .infinity)
+        .frame(height: 100)
         .padding(.horizontal)
+        .shadow(radius: 10, x: 0, y:5)
     }
 }
 
