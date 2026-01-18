@@ -12,6 +12,6 @@ struct Transaction : Identifiable {
     let title : String;
     let amount : Double;
     let date : Date;
-    
+    let type: TransactionType;
     
 }
