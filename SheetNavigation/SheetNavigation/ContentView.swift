@@ -56,6 +56,7 @@ struct ContentView: View {
         })
         .sheet(item: $selectedCustomer) { customer in
             CustomerSheet(selectCustomer: customer)
+                .presentationDetents([.medium, .large])
         }
     }
 }
