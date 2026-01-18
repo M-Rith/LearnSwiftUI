@@ -10,20 +10,32 @@ import SwiftUI
 struct ContentView: View {
     
     
-    @State private var transactions : [Transaction] = [
-        Transaction(title: "Apple", amount: 5.0, date: Date(), type: .expense),
-        Transaction(title: "Salry", amount: 1500.0, date: Date(), type: .income)
-    ]
+    @StateObject private var vm = TransactionsViewModel()
+    
+    @State private var isAddTransaction = false
+    
     
     var body: some View {
-        VStack {
-            BalanceView()
-
-            List(transactions) { transaction in
-                TransactionView(transaction: transaction)
+        ZStack {
             
-            }.scrollContentBackground(.hidden)
+            VStack {
+                BalanceView()
+                
+                List(vm.transactions) { transaction in
+                    TransactionView(transaction: transaction)
+                    
+                }.scrollContentBackground(.hidden)
+            }
+            
+            FloatingButtonView(isAddTransaction: $isAddTransaction)
+            
         }.padding(.top, 40)
+        .sheet(isPresented: $isAddTransaction, content: {
+            AddTransactionView()
+                .presentationDetents([.large])
+        })
+        
+    
     }
 }
 

@@ -35,5 +35,5 @@ struct TransactionView: View {
 }
 
 #Preview {
-    TransactionView(transaction: Transaction(title: "Apple", amount: 5.0, date: Date(), type: .expense))
+    TransactionView(transaction: Transaction(title: "Apple", amount: 5.0, date: Date(), type: .expense, note: "Testing"))
 }
