@@ -28,6 +28,16 @@ struct AddTransactionView: View {
                 }, label: {
                     Text("Add")
                 })
+            }.padding(.bottom, 50)
+            
+            
+            HStack {
+                
+                Spacer()
+                
+                Text("Hello world")
+                
+                Spacer()
             }
             
             VStack (alignment: .leading, spacing: 5) {
@@ -40,15 +50,6 @@ struct AddTransactionView: View {
                     .keyboardType(.alphabet)
             }.padding(.bottom, 20)
             
-            VStack (alignment: .leading, spacing: 5) {
-                Text("Amount")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                TextField("Enter title of transaction", text: $title)
-                    .textInputAutocapitalization(.never)
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.alphabet)
-            }.padding(.bottom, 20)
             
             
             HStack {
@@ -70,11 +71,11 @@ struct AddTransactionView: View {
             
             VStack {
                 DatePicker(
-                       "Start Date",
-                       selection: $date,
-                       displayedComponents: [.date]
-                   )
-                   .datePickerStyle(.graphical)
+                    "Select date",
+                    selection: $date,
+                    displayedComponents: .date
+                )
+                .datePickerStyle(.compact)
             }
             
             VStack (alignment: .leading, spacing: 5) {
