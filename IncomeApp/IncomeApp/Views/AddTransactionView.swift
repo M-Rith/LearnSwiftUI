@@ -32,11 +32,8 @@ struct AddTransactionView: View {
             
             
             HStack {
-                
                 Spacer()
-                
                 Text("Hello world")
-                
                 Spacer()
             }
             
