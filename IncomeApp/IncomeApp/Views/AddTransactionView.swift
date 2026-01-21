@@ -67,12 +67,17 @@ struct AddTransactionView: View {
             
             
             VStack {
-                DatePicker(
-                    "Select date",
-                    selection: $date,
-                    displayedComponents: .date
-                )
-                .datePickerStyle(.compact)
+//                DatePicker(
+//                    "Select date",
+//                    selection: $date,
+//                    displayedComponents: .date
+//                )
+//                .datePickerStyle(.compact)
+                
+                DatePicker(selection: $date, displayedComponents: .date, label: {
+                    Text("Date")
+                })
+                
             }
             
             VStack (alignment: .leading, spacing: 5) {
