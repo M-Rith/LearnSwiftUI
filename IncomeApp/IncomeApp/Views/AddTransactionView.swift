@@ -33,7 +33,9 @@ struct AddTransactionView: View {
             
             HStack {
                 Spacer()
-                Text("Hello world")
+                TextField("Enter title of transaction", text: $title)
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.alphabet)
                 Spacer()
             }
             
@@ -67,13 +69,6 @@ struct AddTransactionView: View {
             
             
             VStack {
-//                DatePicker(
-//                    "Select date",
-//                    selection: $date,
-//                    displayedComponents: .date
-//                )
-//                .datePickerStyle(.compact)
-                
                 DatePicker(selection: $date, displayedComponents: .date, label: {
                     Text("Date")
                 })
