@@ -23,11 +23,13 @@ struct AddTransactionView: View {
                     .fontWeight(.semibold)
                 Spacer()
                 Button(action: {
+                    
                     print(date)
                     print(type)
                 }, label: {
                     Text("Add")
                 })
+                
             }.padding(.bottom, 50)
             
             
