@@ -11,9 +11,12 @@ struct AddTransactionView: View {
     
     @State private var title = "";
     
+    @State private var amount : Double = 0.00
+    
     @State private var type: TransactionType = .expense
     
     @State private var date: Date = Date()
+    
     
     var body: some View {
         VStack {
@@ -35,9 +38,14 @@ struct AddTransactionView: View {
             
             HStack {
                 Spacer()
-                TextField("Enter title of transaction", text: $title)
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.alphabet)
+                
+                TextField("0.00", text: $title)
+                    .font(.custom("", size: 50))
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .keyboardType(.decimalPad)
+                    .frame(width: 200)
+                
                 Spacer()
             }
             
