@@ -26,7 +26,6 @@ struct AddTransactionView: View {
                     .fontWeight(.semibold)
                 Spacer()
                 Button(action: {
-                    
                     print(date)
                     print(type)
                 }, label: {
@@ -38,7 +37,6 @@ struct AddTransactionView: View {
             
             HStack {
                 Spacer()
-                
                 TextField("0.00", text: $title)
                     .font(.custom("", size: 50))
                     .fontWeight(.semibold)
