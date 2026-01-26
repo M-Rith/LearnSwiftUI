@@ -10,11 +10,8 @@ import SwiftUI
 struct AddTransactionView: View {
     
     @State private var title = "";
-    
     @State private var amount : Double = 0.00
-    
     @State private var type: TransactionType = .expense
-    
     @State private var date: Date = Date()
     
     
