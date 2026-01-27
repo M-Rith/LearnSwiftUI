@@ -53,15 +53,11 @@ struct AddTransactionView: View {
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.alphabet)
             }.padding(.bottom, 20)
-            
-            
-            
             HStack {
                 
                 Text("Type : ")
                     .font(.caption)
                     .fontWeight(.semibold)
-                
                 Spacer()
                 
                 Picker("Type", selection: $type) {
