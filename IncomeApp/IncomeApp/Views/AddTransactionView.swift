@@ -71,9 +71,7 @@ struct AddTransactionView: View {
                 DatePicker(selection: $date, displayedComponents: .date, label: {
                     Text("Date")
                 })
-                
             }
-            
             VStack (alignment: .leading, spacing: 5) {
                 Text("Note")
                     .font(.caption)
