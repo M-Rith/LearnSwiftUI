@@ -65,7 +65,6 @@ struct AddTransactionView: View {
                         Text(transation.title)
                     }
                 }
-                
             }.padding(.bottom, 20)
             VStack {
                 DatePicker(selection: $date, displayedComponents: .date, label: {
