@@ -10,9 +10,16 @@ import SwiftUI
 struct AddTransactionView: View {
     
     @State private var title = "";
-    @State private var amount : Double = 0.00
+    @State private var amount: Double? = nil
+    @State private var note = "";
     @State private var type: TransactionType = .expense
     @State private var date: Date = Date()
+
+    
+    func addTransaction() {
+        
+        print(amount!, title, date, note)
+    }
     
     
     var body: some View {
@@ -23,36 +30,46 @@ struct AddTransactionView: View {
                     .fontWeight(.semibold)
                 Spacer()
                 Button(action: {
-                    print(date)
-                    print(type)
+                    addTransaction()
                 }, label: {
                     Text("Add")
                 })
+                .disabled(title=="" || amount == nil)
                 
             }.padding(.bottom, 50)
             
             
             HStack {
                 Spacer()
-                TextField("0.00", text: $title)
-                    .font(.custom("", size: 50))
-                    .fontWeight(.semibold)
-                    .multilineTextAlignment(.center)
-                    .keyboardType(.decimalPad)
-                    .frame(width: 200)
+                TextField("0.00", value: $amount, format: .number)
+                   .font(.system(size: 50))
+                   .fontWeight(.semibold)
+                   .multilineTextAlignment(.center)
+                   .keyboardType(.decimalPad)
+                   .frame(width: 200)
                 
                 Spacer()
             }
             
             VStack (alignment: .leading, spacing: 5) {
-                Text("Title")
-                    .font(.caption)
-                    .fontWeight(.semibold)
+                HStack (spacing: 5){
+                    Text("Title")
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                    Text("*")
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                
+                    
+                }
+                
                 TextField("Enter title of transaction", text: $title)
                     .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.alphabet)
+
             }.padding(.bottom, 20)
+            
             HStack {
                 
                 Text("Type : ")
@@ -75,15 +92,12 @@ struct AddTransactionView: View {
                 Text("Note")
                     .font(.caption)
                     .fontWeight(.semibold)
-                TextField("Enter title of transaction", text: $title)
+                TextField("Enter title of transaction", text: $note)
                     .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.alphabet)
             }.padding(.bottom, 20)
             
-          
-    
-        
             Spacer()
         }
         .padding()
