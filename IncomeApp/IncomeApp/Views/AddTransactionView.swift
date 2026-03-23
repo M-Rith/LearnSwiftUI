@@ -15,10 +15,24 @@ struct AddTransactionView: View {
     @State private var type: TransactionType = .expense
     @State private var date: Date = Date()
 
+    @ObservedObject var vm: TransactionsViewModel
+    
+    @Environment(\.dismiss) private var dismiss
+
     
     func addTransaction() {
-        
-        print(amount!, title, date, note)
+        guard let amount = amount else { return }
+
+        let transaction = Transaction(
+            title: title,
+            amount: amount,
+            date: date,
+            type: type,
+            note: note
+        )
+        vm.addNewTransaction(newTransaction: transaction)
+
+        dismiss()
     }
     
     
@@ -103,8 +117,4 @@ struct AddTransactionView: View {
         .padding()
         .padding(.top, 20)
     }
-}
-
-#Preview {
-    AddTransactionView()
 }

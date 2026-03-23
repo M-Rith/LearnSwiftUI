@@ -19,19 +19,19 @@ struct ContentView: View {
         ZStack {
             
             VStack {
-                BalanceView()
+                BalanceView(vm: vm)
                 
-                List(vm.transactions) { transaction in
+                List(vm.transactions.sorted { $0.date > $1.date }) { transaction in
                     TransactionView(transaction: transaction)
-                    
-                }.scrollContentBackground(.hidden)
+                }
+                .scrollContentBackground(.hidden)
             }
             
             FloatingButtonView(isAddTransaction: $isAddTransaction)
             
         }.padding(.top, 40)
         .sheet(isPresented: $isAddTransaction, content: {
-            AddTransactionView()
+            AddTransactionView(vm: vm)
                 .presentationDetents([.large])
         })
         
