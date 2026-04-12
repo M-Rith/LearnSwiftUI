@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct AddTransactionView: View {
-    
-    @State private var title = "";
+    @State private var title = ""
     @State private var amount: Double? = nil
-    @State private var note = "";
+    @State private var note = ""
     @State private var type: TransactionType = .expense
     @State private var date: Date = Date()
 
     @ObservedObject var vm: TransactionsViewModel
-    
+    @Binding var isEdit: Bool
+    let transactionToEdit: Transaction?
+
     @Environment(\.dismiss) private var dismiss
 
-    
-    func addTransaction() {
+    func saveTransaction() {
         guard let amount = amount else { return }
 
         let transaction = Transaction(
@@ -30,91 +30,103 @@ struct AddTransactionView: View {
             type: type,
             note: note
         )
-        vm.addNewTransaction(newTransaction: transaction)
+
+
+        if isEdit {
+            vm.editTransaction(transaction: transaction, id: transactionToEdit.id as UUID)
+        } else {
+            vm.addNewTransaction(newTransaction: transaction)
+        }
 
         dismiss()
     }
-    
-    
+
     var body: some View {
         VStack {
             HStack {
-                Text("Add Transaction")
+                Text(isEdit ? "Edit Transaction" : "Add Transaction")
                     .font(.title)
                     .fontWeight(.semibold)
+
                 Spacer()
-                Button(action: {
-                    addTransaction()
-                }, label: {
-                    Text("Add")
-                })
-                .disabled(title=="" || amount == nil)
-                
-            }.padding(.bottom, 50)
-            
-            
+
+                Button {
+                    saveTransaction()
+                } label: {
+                    Text(isEdit ? "Save" : "Add")
+                }
+                .disabled(title.isEmpty || amount == nil)
+            }
+            .padding(.bottom, 50)
+
             HStack {
                 Spacer()
                 TextField("0.00", value: $amount, format: .number)
-                   .font(.system(size: 50))
-                   .fontWeight(.semibold)
-                   .multilineTextAlignment(.center)
-                   .keyboardType(.decimalPad)
-                   .frame(width: 200)
-                
+                    .font(.system(size: 50))
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .keyboardType(.decimalPad)
+                    .frame(width: 200)
                 Spacer()
             }
-            
-            VStack (alignment: .leading, spacing: 5) {
-                HStack (spacing: 5){
+
+            VStack(alignment: .leading, spacing: 5) {
+                HStack(spacing: 5) {
                     Text("Title")
                         .font(.caption)
                         .fontWeight(.semibold)
                     Text("*")
                         .font(.caption)
                         .foregroundStyle(.red)
-                
-                    
                 }
-                
+
                 TextField("Enter title of transaction", text: $title)
                     .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
-                    .keyboardType(.alphabet)
+            }
+            .padding(.bottom, 20)
 
-            }.padding(.bottom, 20)
-            
             HStack {
-                
                 Text("Type : ")
                     .font(.caption)
                     .fontWeight(.semibold)
+
                 Spacer()
-                
+
                 Picker("Type", selection: $type) {
-                    ForEach(TransactionType.allCases) { transation in
-                        Text(transation.title)
+                    ForEach(TransactionType.allCases) { transaction in
+                        Text(transaction.title)
+                            .tag(transaction)
                     }
                 }
-            }.padding(.bottom, 20)
-            VStack {
-                DatePicker(selection: $date, displayedComponents: .date, label: {
-                    Text("Date")
-                })
             }
-            VStack (alignment: .leading, spacing: 5) {
+            .padding(.bottom, 20)
+
+            DatePicker("Date", selection: $date, displayedComponents: .date)
+
+            VStack(alignment: .leading, spacing: 5) {
                 Text("Note")
                     .font(.caption)
                     .fontWeight(.semibold)
-                TextField("Enter title of transaction", text: $note)
+
+                TextField("Enter note", text: $note)
                     .textInputAutocapitalization(.never)
                     .textFieldStyle(.roundedBorder)
-                    .keyboardType(.alphabet)
-            }.padding(.bottom, 20)
-            
+            }
+            .padding(.bottom, 20)
+
             Spacer()
         }
         .padding()
         .padding(.top, 20)
+        .onAppear {
+            if isEdit, let transaction = transactionToEdit {
+                title = transaction.title
+                amount = transaction.amount
+                note = transaction.note
+                type = transaction.type
+                date = transaction.date
+            }
+        }
     }
 }

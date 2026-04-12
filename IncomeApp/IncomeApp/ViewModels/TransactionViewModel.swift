@@ -34,6 +34,16 @@ final class TransactionsViewModel: ObservableObject {
     func addNewTransaction(newTransaction : Transaction){
         transactions.append(newTransaction)
     }
+    
+    func deleteTransaction(transaction: Transaction) {
+        transactions.removeAll { $0.id == transaction.id }
+    }
+    
+    func editTransaction(transaction: Transaction, id : UUID) {
+        if let index = transactions.firstIndex(where: { $0.id == id }) {
+            transactions[index] = transaction
+        }
+    }
 
     
 }
