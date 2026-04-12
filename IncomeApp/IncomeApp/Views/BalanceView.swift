@@ -8,6 +8,23 @@
 import SwiftUI
 
 struct BalanceView: View {
+    
+    @ObservedObject var vm: TransactionsViewModel
+    
+    var expense: Double {
+        vm.totalExpense
+    }
+    
+    var income: Double {
+        vm.totalIncome
+    }
+    
+    var remaining: Double {
+        vm.remainingMoney
+    }
+    
+    
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
@@ -20,7 +37,7 @@ struct BalanceView: View {
                     Spacer()
                 }
                 
-                Text("2$")
+                Text(remaining, format: .currency(code: "JPY"))
                     .foregroundStyle(.white)
                     .font(.largeTitle)
                 HStack(spacing: 30) {
@@ -35,7 +52,7 @@ struct BalanceView: View {
                                 .fontWeight(.semibold)
                             
                         }
-                        Text("10$")
+                        Text(expense, format: .currency(code: "JPY"))
                             .foregroundStyle(.white)
                             .font(.subheadline)
                     }
@@ -51,7 +68,7 @@ struct BalanceView: View {
                                 .fontWeight(.semibold)
                             
                         }
-                        Text("10$")
+                        Text(income, format: .currency(code: "JPY"))
                             .foregroundStyle(.white)
                             .font(.subheadline)
                     }
@@ -65,8 +82,4 @@ struct BalanceView: View {
         .padding(.horizontal)
         .shadow(radius: 10, x: 0, y:5)
     }
-}
-
-#Preview {
-    BalanceView()
 }

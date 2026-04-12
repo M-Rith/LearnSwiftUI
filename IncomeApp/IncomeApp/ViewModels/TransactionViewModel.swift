@@ -13,4 +13,37 @@ final class TransactionsViewModel: ObservableObject {
         Transaction(title: "Salary", amount: 1200, date: .now, type: .income, note: "Testing")
     ]
     
+    var totalExpense: Double {
+        transactions
+            .filter { $0.type == .expense }
+            .reduce(0) { $0 + $1.amount }
+    }
+
+    var totalIncome: Double {
+        transactions
+            .filter { $0.type == .income }
+            .reduce(0) { $0 + $1.amount }
+    }
+
+    var remainingMoney: Double {
+        totalIncome - totalExpense
+    }
+    
+    
+    
+    func addNewTransaction(newTransaction : Transaction){
+        transactions.append(newTransaction)
+    }
+    
+    func deleteTransaction(transaction: Transaction) {
+        transactions.removeAll { $0.id == transaction.id }
+    }
+    
+    func editTransaction(transaction: Transaction, id : UUID) {
+        if let index = transactions.firstIndex(where: { $0.id == id }) {
+            transactions[index] = transaction
+        }
+    }
+
+    
 }
