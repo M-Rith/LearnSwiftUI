@@ -1,3 +1,5 @@
+import Foundation
+
 struct APIClient {
 
     func request<T: Decodable>(_ endpoint: URLRequest) async throws -> T {

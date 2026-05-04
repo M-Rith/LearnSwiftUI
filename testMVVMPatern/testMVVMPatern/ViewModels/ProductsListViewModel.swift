@@ -1,3 +1,6 @@
+import Foundation
+
+@MainActor
 final class ProductListViewModel: ObservableObject {
 
     @Published var products: [Product] = []
@@ -10,12 +13,13 @@ final class ProductListViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
 
+        defer { isLoading = false }
+
         do {
-            products = try await repository.getProducts()
+            let results = try await repository.getProducts()
+            self.products = results
         } catch {
             errorMessage = error.localizedDescription
         }
-
-        isLoading = false
     }
 }

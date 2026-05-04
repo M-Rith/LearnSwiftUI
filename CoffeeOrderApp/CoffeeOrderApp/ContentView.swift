@@ -1,17 +1,15 @@
 //
 //  ContentView.swift
-//  testMVVMPatern
+//  CoffeeOrderApp
 //
-//  Created by AppleD0g on 2026/04/28.
+//  Created by AppleD0g on 2026/05/04.
 //
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            ProductList()
-        }
+        orderListView()
     }
 }
 
